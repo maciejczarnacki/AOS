@@ -1,8 +1,7 @@
 using System.Globalization;
 using System.IO;
 using System.Drawing;
-using Emgu.CV;
-using Emgu.CV.Structure;
+using System.Drawing.Imaging;
 namespace Telescope_Tester
 
 {
@@ -11,21 +10,22 @@ namespace Telescope_Tester
 
         public static Form1 form1Instance;
         public PictureBox picBox;
-        public Image<Bgr, Byte> cropedImage = new Image<Bgr, byte>(400, 400);
-        public Image<Gray, Byte> cropedImageGray = new Image<Gray, Byte>(400, 400);
-        public Image<Bgr, Byte> mainImage = new Image<Bgr, Byte>(400, 400);
-        public Image<Gray, Byte> grayImage = new Image<Gray, Byte>(400, 400);
+        public Bitmap cropedImage = new Bitmap(400, 400);
+        Bitmap mainImage = new Bitmap(400, 400);     
+        Bitmap mainRonchigram = new Bitmap(400, 400);
+
+        Bitmap obraz = new Bitmap(400,400);
+        Bitmap buforPanel;
         
-        Image<Bgr, Byte> mainRonchigram = new Image<Bgr, Byte>(400, 400);
 
         public Form1()
         {
             InitializeComponent();
-
             form1Instance = this;
             picBox = pictureBox2;
             cropedImage = mainImage;
-            cropedImageGray = grayImage;
+            buforPanel = new Bitmap(400, 400);
+            
         }
 
         double Diameter = 0;
@@ -39,6 +39,7 @@ namespace Telescope_Tester
         double waveLenght = 550;
 
         Boolean loadedImageStatus = false;
+        bool blink = false;
 
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -70,11 +71,11 @@ namespace Telescope_Tester
         }
 
 
-        private static Image<Bgr, Byte> RonchigramGenerator(double diameter, double focalLenght, double gratingLines, double distFromROC, double b, double ronchiShift, double knifePos, double lightSource, double waveLength, int Status)
+        private static Bitmap RonchigramGenerator(double diameter, double focalLenght, double gratingLines, double distFromROC, double b, double ronchiShift, double knifePos, double lightSource, double waveLength, int Status)
         {
             //deklaracja bitmapy Ronchigramu
-            //Bitmap ronchigram = new Bitmap(400, 400);
-            Image<Bgr, Byte> ronchigram_ = new Image<Bgr, Byte>(400, 400);
+            Bitmap ronchigram = new Bitmap(400, 400);
+            Bitmap ronchigram_ = new Bitmap(400, 400);
             
             int X0 = 200;
             int Y0 = 200;
@@ -161,13 +162,21 @@ namespace Telescope_Tester
                                 {
                                     A = 6000;
                                 }
-                                int intensity = (int)(A * Math.Abs(U - knifePos))+127;
-                                ronchigram_.Draw(new Rectangle(i,k,0,0),new Bgr(intensity,intensity,intensity),0);
+                                double intensity = (A * Math.Abs(U - knifePos))+127;
+                                if (intensity < 0)
+                                {
+                                    intensity = 0;
+                                }
+                                if (intensity > 255)
+                                {
+                                    intensity = 255;
+                                }
+                                ronchigram_.SetPixel(i, k, Color.FromArgb((int)Math.Round(intensity),(int)Math.Round(intensity), (int)Math.Round(intensity)));
+                                //ronchigram_.SetPixel(i, k, Color.White);
                             }
                             else
                             {
-                                //ronchigram.SetPixel(i, k, Color.White);
-                                ronchigram_.Draw(new Rectangle(i, k, 0, 0), new Bgr(255, 255, 255), 0);
+                                ronchigram_.SetPixel(i, k, Color.White);
                             }
                         }
                         else
@@ -183,13 +192,21 @@ namespace Telescope_Tester
                                 {
                                     A = 6000;
                                 }
-                                int intensity = 127 - (int)(A * Math.Abs(U -knifePos));
-                                ronchigram_.Draw(new Rectangle(i, k, 0, 0), new Bgr(intensity, intensity, intensity), 0);
+                                double intensity = 127 - (double)(A * Math.Abs(U -knifePos));
+                                if(intensity < 0)
+                                {
+                                    intensity = 0;
+                                }
+                                if(intensity > 255)
+                                {
+                                    intensity = 255;
+                                }
+                                ronchigram_.SetPixel(i, k, Color.FromArgb((int)Math.Round(intensity), (int)Math.Round(intensity), (int)Math.Round(intensity)));
+                                //ronchigram_.SetPixel(i, k, Color.White);
                             }
                             else
                             {
                                 //ronchigram.SetPixel(i, k, Color.White);
-                                //ronchigram_.Draw(new Rectangle(i, k, 0, 0), new Bgr(255, 255, 255), 0);
                             }
                         }
                     }
@@ -263,8 +280,8 @@ namespace Telescope_Tester
             {
                 Status = 4;
             }
-            Image<Bgr, Byte> ronchi = RonchigramGenerator(Diameter, focalLenght, gratingLines, distFromROC, conicConstant, ronchiShift, knifePos, lightSource, waveLenght, Status);
-            pictureBox1.Image = ronchi.ToBitmap();
+            Bitmap ronchi = RonchigramGenerator(Diameter, focalLenght, gratingLines, distFromROC, conicConstant, ronchiShift, knifePos, lightSource, waveLenght, Status);
+            pictureBox1.Image = ronchi;
             mainRonchigram = ronchi;
         }
 
@@ -330,49 +347,25 @@ namespace Telescope_Tester
             open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
             if (open.ShowDialog() == DialogResult.OK)
             {
-                //mainImage = new Image<Bgr, Byte>(open.FileName).Resize(400,400, Emgu.CV.CvEnum.Inter.Linear);
-                //grayImage = new Image<Gray, Byte>(open.FileName).Resize(400, 400, Emgu.CV.CvEnum.Inter.Linear);
-                //binaryImage = new Image<Gray, Byte>(open.FileName).Resize(400, 400, Emgu.CV.CvEnum.Inter.Linear);
-                // display image in picture box  
-                //pictureBox2.Image = new Bitmap(mainImage.ToBitmap());
-                //pictureBox3.Image = new Bitmap(mainImage.ToBitmap());
-
-                Image<Bgr, Byte> loadedImage = new Image<Bgr, Byte>(open.FileName);
+                Bitmap loadedImage = new Bitmap(open.FileName);
                 int szerokosc = loadedImage.Width;
                 int wysokosc = loadedImage.Height;
-
                 Form2 form2 = new Form2(loadedImage, szerokosc, wysokosc);
                 form2.Show();
-
                 loadedImageStatus = true;
             }
         }
 
         private void button2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (loadedImageStatus)
-            {
-                Bitmap calculatedRonchi = new Bitmap(pictureBox1.Image);
-                Bitmap ronchigramPhoto = new Bitmap(pictureBox2.Image);
-                pictureBox2.Image = calculatedRonchi;
-                pictureBox3.Image = ronchigramPhoto;
-                //calculatedRonchi.Dispose();
-                //ronchigramPhoto.Dispose();
-            }
-            else
-            {
-                return;
-            }
+            blink = true;
+            RonchigramShow();
         }
 
         private void button2_MouseUp(object sender, MouseEventArgs e)
         {
-            if (loadedImageStatus)
-            {
-                Bitmap ronchigramPhoto = new Bitmap(pictureBox3.Image);
-                pictureBox2.Image = ronchigramPhoto;
-               // ronchigramPhoto.Dispose();
-            }
+            blink = false;
+            RonchigramShow();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -386,74 +379,29 @@ namespace Telescope_Tester
         }
 
 
-        //Image<Bgr, Byte> actualBGR = new Image<Bgr, byte>(400, 400);
-        //Image<Gray, Byte> actualGray = new Image<Gray, byte>(400, 400);
-
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            Image<Bgr, Byte> actualBGR = new Image<Bgr, byte>(400,400);
-            Image<Gray, Byte> actualGray = new Image<Gray, byte>(400, 400);
 
-            if(checkBox6.Checked == true)
-            {
-                actualGray = grayImage.Mul((float)trackBar2.Value/100) + trackBar1.Value;
-                pictureBox2.Image = actualGray.ToBitmap();
-                actualGray.Dispose();
-            }
-            else
-            {
-                actualBGR = cropedImage.Mul((float)trackBar2.Value/100) + trackBar1.Value;
-                pictureBox2.Image = actualBGR.ToBitmap();
-                actualBGR.Dispose();
-            }
         }
 
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox6.Checked == true)
-            {
-                pictureBox2.Image = cropedImageGray.ToBitmap();
-                pictureBox3.Image = cropedImageGray.ToBitmap();
-                trackBar3.Enabled = true;
-            }
-            else
-            {
-                pictureBox2.Image = cropedImage.ToBitmap();
-                pictureBox3.Image = cropedImage.ToBitmap();
-            }
+
         }
 
-        Image<Bgr, Byte> result_mix = new Image<Bgr, Byte>(400, 400);
-        Image<Bgr, Byte> input_1 = new Image<Bgr, Byte>(400, 400);
-        Image<Bgr, Byte> input_2 = new Image<Bgr, Byte>(400, 400);
 
         private void trackBar3_Scroll(object sender, EventArgs e)
         {
-            pictureBox2.Image = cropedImage.ToBitmap();
-            double beta;
-            double alfa;
-            alfa = (float)trackBar3.Value/100;
-            beta = 1 - alfa;
-
-            Image<Bgr, Byte> result = new Image<Bgr, Byte>(400, 400);
-
-            input_1 = cropedImage.Clone();
-            input_2 = mainRonchigram.Clone();
-
-            CvInvoke.AddWeighted(input_1, beta, input_2, alfa, 0.0, result);
-            pictureBox2.Image = result.ToBitmap();
-            input_1.Dispose();
-            input_2.Dispose();
-            result.Dispose();
+            RonchigramShow();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             trackBar1.Value = 0;
-            trackBar2.Value = 100;
-            trackBar3.Value = 0;
+            trackBar2.Value = 0;
+            trackBar3.Value = 100;
             trackBar4.Value = 0;
-            pictureBox2.Image = cropedImage.ToBitmap();
+            pictureBox2.Image = cropedImage;
             checkBox6.Checked = false;
         }
 
@@ -477,45 +425,72 @@ namespace Telescope_Tester
             }
         }
 
-        Image<Bgr, Byte> simulation = new Image<Bgr, Byte>(400, 400);
-        Image<Bgr, Byte> ronchigram = new Image<Bgr, Byte>(400, 400);
-        Image<Bgr, Byte> result2 = new Image<Bgr, Byte>(400, 400);
-
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
-            if (trackBar4.Value == 0)
-            { 
-                pictureBox2.Image = cropedImage.ToBitmap();
-            }
-            else if (trackBar4.Value == 400)
+            /* if (trackBar4.Value == 0)
+             { 
+                 pictureBox2.Image = cropedImage.ToBitmap();
+             }
+             else if (trackBar4.Value == 400)
+             {
+                 pictureBox2.Image = mainRonchigram.ToBitmap();
+             }
+             else
+             {
+                 if (trackBar4.Value > 0 && trackBar4.Value != 400)
+                 {
+                     Rectangle roi_1 = new Rectangle(0, 0, 400, trackBar4.Value);
+                     Rectangle roi_2 = new Rectangle(0, trackBar4.Value, 400, 400);
+
+                     simulation = mainRonchigram.Copy();
+                     ronchigram = cropedImage.Copy();
+
+                     simulation.ROI = roi_1;
+                     ronchigram.ROI = roi_2;
+                     var simulationROI = simulation.Copy();
+                     var ronchigramROI = ronchigram.Copy();
+
+                     //Image<Bgr, Byte> result2 = new Image<Bgr, Byte>(400, 400);
+
+                     CvInvoke.VConcat(simulationROI, ronchigramROI, result2);
+                     pictureBox2.Image = result2.ToBitmap();
+                     simulationROI.Dispose();
+                     ronchigramROI.Dispose();
+                     simulation.Dispose();
+                     ronchigram.Dispose();
+                 }
+             }*/
+
+
+
+        }
+
+        private void RonchigramShow()
+        {
+            Graphics ggBufor = Graphics.FromImage(buforPanel);
+            Graphics gg = pictureBox2.CreateGraphics();
+
+            ggBufor.FillRectangle(Brushes.Black, 0, 0, 400, 400);
+            ggBufor.DrawImage(mainRonchigram, 0, 0);
+
+            ColorMatrix matrix = new ColorMatrix();
+            if (blink == true)
             {
-                pictureBox2.Image = mainRonchigram.ToBitmap();
+                matrix.Matrix33 = 0;
             }
             else
             {
-                if (trackBar4.Value > 0 && trackBar4.Value != 400)
-                {
-                    Rectangle roi_1 = new Rectangle(0, 0, 400, trackBar4.Value);
-                    Rectangle roi_2 = new Rectangle(0, trackBar4.Value, 400, 400);
 
-                    simulation = mainRonchigram.Copy();
-                    ronchigram = cropedImage.Copy();
-
-                    simulation.ROI = roi_1;
-                    ronchigram.ROI = roi_2;
-                    var simulationROI = simulation.Copy();
-                    var ronchigramROI = ronchigram.Copy();
-
-                    //Image<Bgr, Byte> result2 = new Image<Bgr, Byte>(400, 400);
-
-                    CvInvoke.VConcat(simulationROI, ronchigramROI, result2);
-                    pictureBox2.Image = result2.ToBitmap();
-                    simulationROI.Dispose();
-                    ronchigramROI.Dispose();
-                    simulation.Dispose();
-                    ronchigram.Dispose();
-                }
+                matrix.Matrix33 = (float)(1.0 * trackBar3.Value / trackBar3.Maximum);
             }
+            ImageAttributes attributes = new ImageAttributes();
+            attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+            
+            ggBufor.DrawImage(cropedImage, new Rectangle(0, 0, 400, 400), 0, 0, 400, 400, GraphicsUnit.Pixel, attributes);
+            gg.DrawImage(buforPanel, 0, 0);
+
+
 
         }
 

@@ -282,7 +282,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(689, 497);
+            this.label15.Location = new System.Drawing.Point(689, 448);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(54, 15);
             this.label15.TabIndex = 41;
@@ -292,13 +292,13 @@
             // 
             this.trackBar3.AutoSize = false;
             this.trackBar3.LargeChange = 2;
-            this.trackBar3.Location = new System.Drawing.Point(753, 497);
+            this.trackBar3.Location = new System.Drawing.Point(753, 448);
             this.trackBar3.Maximum = 100;
             this.trackBar3.Name = "trackBar3";
-            this.trackBar3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.trackBar3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.trackBar3.Size = new System.Drawing.Size(336, 20);
             this.trackBar3.TabIndex = 40;
-            this.trackBar3.TickFrequency = 3;
+            this.trackBar3.Value = 100;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
             // 
             // checkBox6
@@ -310,50 +310,55 @@
             this.checkBox6.TabIndex = 39;
             this.checkBox6.Text = "Gray";
             this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.Visible = false;
             this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // trackBar2
             // 
             this.trackBar2.AutoSize = false;
             this.trackBar2.LargeChange = 1;
-            this.trackBar2.Location = new System.Drawing.Point(753, 473);
+            this.trackBar2.Location = new System.Drawing.Point(753, 500);
             this.trackBar2.Maximum = 200;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(336, 20);
             this.trackBar2.TabIndex = 38;
             this.trackBar2.TickFrequency = 2;
             this.trackBar2.Value = 100;
+            this.trackBar2.Visible = false;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(689, 473);
+            this.label14.Location = new System.Drawing.Point(689, 500);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 15);
             this.label14.TabIndex = 37;
             this.label14.Text = "Contrast";
+            this.label14.Visible = false;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(689, 448);
+            this.label13.Location = new System.Drawing.Point(689, 475);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 15);
             this.label13.TabIndex = 36;
             this.label13.Text = "Brightness";
+            this.label13.Visible = false;
             // 
             // trackBar1
             // 
             this.trackBar1.AutoSize = false;
             this.trackBar1.LargeChange = 2;
-            this.trackBar1.Location = new System.Drawing.Point(753, 448);
+            this.trackBar1.Location = new System.Drawing.Point(753, 475);
             this.trackBar1.Maximum = 255;
             this.trackBar1.Minimum = -255;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(336, 20);
             this.trackBar1.TabIndex = 35;
             this.trackBar1.TickFrequency = 5;
+            this.trackBar1.Visible = false;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // textBox12
