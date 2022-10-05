@@ -400,14 +400,14 @@ namespace Telescope_Tester
             trackBar1.Value = 0;
             trackBar2.Value = 0;
             trackBar3.Value = 100;
-            trackBar4.Value = 0;
+            trackBar4.Value = 400;
             pictureBox2.Image = cropedImage;
-            checkBox6.Checked = false;
+            //checkBox6.Checked = false;
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String aboutThisProgramm = "Astromaniac Optical Simulator v0.3\nAuthor - Maciej Czarnacki\nContact - maciej.czarnacki@gmail.com";
+            String aboutThisProgramm = "Astromaniac Optical Simulator v0.5\nAuthor - Maciej Czarnacki\nContact - maciej.czarnacki@gmail.com";
             MessageBox.Show(aboutThisProgramm, "About");
         }
 
@@ -427,42 +427,7 @@ namespace Telescope_Tester
 
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
-            /* if (trackBar4.Value == 0)
-             { 
-                 pictureBox2.Image = cropedImage.ToBitmap();
-             }
-             else if (trackBar4.Value == 400)
-             {
-                 pictureBox2.Image = mainRonchigram.ToBitmap();
-             }
-             else
-             {
-                 if (trackBar4.Value > 0 && trackBar4.Value != 400)
-                 {
-                     Rectangle roi_1 = new Rectangle(0, 0, 400, trackBar4.Value);
-                     Rectangle roi_2 = new Rectangle(0, trackBar4.Value, 400, 400);
-
-                     simulation = mainRonchigram.Copy();
-                     ronchigram = cropedImage.Copy();
-
-                     simulation.ROI = roi_1;
-                     ronchigram.ROI = roi_2;
-                     var simulationROI = simulation.Copy();
-                     var ronchigramROI = ronchigram.Copy();
-
-                     //Image<Bgr, Byte> result2 = new Image<Bgr, Byte>(400, 400);
-
-                     CvInvoke.VConcat(simulationROI, ronchigramROI, result2);
-                     pictureBox2.Image = result2.ToBitmap();
-                     simulationROI.Dispose();
-                     ronchigramROI.Dispose();
-                     simulation.Dispose();
-                     ronchigram.Dispose();
-                 }
-             }*/
-
-
-
+            RonchigramShow();
         }
 
         private void RonchigramShow()
@@ -480,18 +445,19 @@ namespace Telescope_Tester
             }
             else
             {
-
                 matrix.Matrix33 = (float)(1.0 * trackBar3.Value / trackBar3.Maximum);
             }
             ImageAttributes attributes = new ImageAttributes();
             attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-            
-            ggBufor.DrawImage(cropedImage, new Rectangle(0, 0, 400, 400), 0, 0, 400, 400, GraphicsUnit.Pixel, attributes);
+            if(trackBar4.Value == 400)
+            {
+                ggBufor.DrawImage(cropedImage, new Rectangle(0, 0, 400, 400), 0, 0, 400, 400, GraphicsUnit.Pixel, attributes);
+            }
+            else
+            {
+                ggBufor.DrawImage(cropedImage, 0, 0, new Rectangle(0, 0, 400, trackBar4.Value), GraphicsUnit.Pixel);
+            }
             gg.DrawImage(buforPanel, 0, 0);
-
-
-
         }
 
 

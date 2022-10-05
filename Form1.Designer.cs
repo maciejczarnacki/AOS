@@ -246,6 +246,7 @@
             this.trackBar4.Size = new System.Drawing.Size(20, 400);
             this.trackBar4.TabIndex = 45;
             this.trackBar4.TickFrequency = 5;
+            this.trackBar4.Value = 400;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
             // 
             // checkBox7
