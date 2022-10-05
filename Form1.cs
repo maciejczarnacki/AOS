@@ -407,7 +407,7 @@ namespace Telescope_Tester
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String aboutThisProgramm = "Astromaniac Optical Simulator v0.5\nAuthor - Maciej Czarnacki\nContact - maciej.czarnacki@gmail.com";
+            String aboutThisProgramm = "Astromaniac Optical Simulator v0.5.5\nAuthor - Maciej Czarnacki\nContact - maciej.czarnacki@gmail.com";
             MessageBox.Show(aboutThisProgramm, "About");
         }
 
