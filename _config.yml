@@ -1,4 +1,4 @@
 title: "AOS"
-remote_theme: just-the-docs/just-the-docs
+remote_theme: jekyll-theme-minimal
 color_scheme: "dark"
 search_enabled: false
