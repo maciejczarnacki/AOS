@@ -1,4 +1,6 @@
-title: "AOS"
-remote_theme: jekyll-theme-minimal
-color_scheme: "dark"
-search_enabled: false
+title: AOS
+logo: tos_.ico
+description: Astromaniac Optical Simulator
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-minimal
