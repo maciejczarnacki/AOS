@@ -2,3 +2,7 @@ Astromaniac Optical Simulator is a tool for studying the optics of telescopes co
 
 
 $\ x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
+
+```math
+\sqrt{3}
+```
