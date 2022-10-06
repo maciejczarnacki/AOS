@@ -4,3 +4,4 @@ description: Astromaniac Optical Simulator
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-minimal
+color_scheme: "dark"
