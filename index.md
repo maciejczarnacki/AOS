@@ -23,3 +23,5 @@ $$
     |\psi_2\rangle &= c|0\rangle + d|1\rangle
   \end{align}
 $$
+
+![Alt text](/AOS/assets/AOS.png?raw=true "AOS")
