@@ -24,4 +24,4 @@ $$
   \end{align}
 $$
 
-![Alt text](assets/AOS.png?raw=true "AOS")
+![AOS](assets/img/AOS.png?raw=true "AOS")
