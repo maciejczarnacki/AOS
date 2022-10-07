@@ -1,9 +1,0 @@
-markdown: kramdown
-title: AOS
-logo: /assets/img/AOS.png
-description: Astromaniac Optical Simulator
-show_downloads: true
-google_analytics:
-theme: jekyll-theme-minimal
-plugins: 
-    - jekyll-seo-tag
