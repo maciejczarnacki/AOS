@@ -1,4 +1,4 @@
-markdown: maruku
+markdown: kramdown
 title: AOS
 logo: /assets/img/AOS.png
 description: Astromaniac Optical Simulator
