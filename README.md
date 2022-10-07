@@ -1,7 +1,6 @@
 ---
-layouts: default
+layouts: "default"
 use_math: true
-published: true
 ---
 
 
