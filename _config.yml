@@ -1,9 +1,0 @@
-title: AOS
-logo: AOS.png
-description: Astromaniac Optical Simulator
-show_downloads: true
-google_analytics:
-theme: jekyll-theme-minimal
-plugins:
-  - jekyll-seo-tag
-color_scheme: "dark"
