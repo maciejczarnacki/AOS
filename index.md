@@ -1,11 +1,8 @@
-
 <style>
-body {background-color: powderblue;}
-h1   {color: blue;}
-p    {color: red;}
+body {background-color:rgb(30, 30, 30);}
 </style>
 
-# ![](./AOS_.png) <font size = 20>**AOS**</font> 
+# ![](./AOS_.png) <font size = 20>AOS</font> 
 ## Astromaniac Optical Simulator
 
 
