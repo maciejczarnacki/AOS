@@ -1,5 +1,3 @@
-plugins:
-  - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
@@ -9,4 +7,6 @@ include:
   - installation.md
   - howto.md
 
-theme: pages-themes/midnight@v0.2.0
+remote_theme: pages-themes/midnight@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
