@@ -8,3 +8,5 @@ include:
   - index.md
   - installation.md
   - howto.md
+
+theme: jekyll-theme-tactile
