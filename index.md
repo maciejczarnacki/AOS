@@ -8,8 +8,8 @@ This is a tool for generating Ronchi simulation images and then comparing them t
 The program enables approximate quantitative determination of the wavefront error and the Strehl coefficient for the tested optics.
 
 The page is divided into several parts:
-- [Download page](./pages/download.md)
-- [How to install AOS](./pages/installation.md)
+- [Download page](./download.md)
+- [How to install AOS](./installation.md)
 - First steps with AOS
 - How it really works
 - Contact with the author
