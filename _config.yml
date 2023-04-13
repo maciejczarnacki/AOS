@@ -9,4 +9,4 @@ include:
   - installation.md
   - howto.md
 
-theme: jekyll-theme-tactile
+theme: pages-themes/midnight@v0.2.0
