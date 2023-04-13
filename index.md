@@ -1,5 +1,5 @@
 
-# ![](./images/AOS_.png) <font size = 20>**AOS**</font> 
+# ![](./AOS_.png) <font size = 20>**AOS**</font> 
 ## Astromaniac Optical Simulator
 
 
