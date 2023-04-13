@@ -1,12 +1,3 @@
-<style>
-body {background-color:rgb(30, 30, 30);}
-p {color: white;}
-</style>
-
-# ![](./AOS_.png) <font size = 22>AOS</font> 
-## Astromaniac Optical Simulator
-
-
 Welcome to the page dedicated to the AOS program. First, let's ask ourselves what AOS is. 
 This is a tool for generating Ronchi simulation images and then comparing them to the actual Ronchi images of the telescope under test. 
 The program enables approximate quantitative determination of the wavefront error and the Strehl coefficient for the tested optics.
