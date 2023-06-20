@@ -8,7 +8,7 @@ The page is divided into several parts:
 - [First steps with AOS]()
 - [How it really works]()
 - [Interesting links about testing optics using the Ronchi method]()
-- [Contact with the author](aos.mcz@gmail.com)
+- [Contact with the author]()
 
 
 If you feel the need to support the development of this interesting tool, you can support the author with any donation via [PayPal]().
