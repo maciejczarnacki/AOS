@@ -5,9 +5,10 @@ The program enables approximate quantitative determination of the wavefront erro
 The page is divided into several parts:
 - [Download page](./download.md)
 - [How to install AOS](./installation.md)
-- First steps with AOS
-- How it really works
-- Contact with the author
+- [First steps with AOS]()
+- [How it really works]()
+- [Interesting links about testing optics using the Ronchi method]()
+- [Contact with the author](aos.mcz@gmail.com)
 
 
 If you feel the need to support the development of this interesting tool, you can support the author with any donation via [PayPal]().
