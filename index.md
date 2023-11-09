@@ -4,6 +4,8 @@ The main purpose of the analysis is to determine the amount of spherical aberrat
 
 AOS is a Windows application. For its correct installation and operation, .net version 6 is required, which, if necessary, is installed automatically together with AOS.
 
+For a more detailed analysis of how AOS performs calculations, please visit my GitHub repository [link](https://github.com/maciejczarnacki/ronchi)
+
 #### 2023.11.09 - AOS version 0.9.1 is now available. The program takes into account the definition of turned edges and zones. Wavefront error is calculated from raytracing, with a Airy disk hitting by light rays criterion.
 
 [AOS v0.9.1 Download link](https://drive.google.com/file/d/1KXSklTsz-Npuy4GlbtK8EwA3wZMJM1E6/view?usp=sharing)
