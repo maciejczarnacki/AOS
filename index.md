@@ -19,7 +19,7 @@ The donation is not obligatory and AOS is free.
 
 With the help of the images below, I demonstrate how to use AOS. Let's start.
 
-![Main window](/images/main_window.png)
+![Main window](/img/main_window.png)
 
 Color explanation:
 ```
