@@ -2,6 +2,8 @@ Welcome to the page dedicated to the AOS program. First, let's ask ourselves wha
 This is a tool for generating Ronchi simulation images and then comparing them to the actual Ronchi images of the telescope under test. 
 The main purpose of the analysis is to determine the amount of spherical aberration of the system and the occurrence of turned edges and zones of the telescope optics (mirror or lens).
 
+This tool is mainly aimed at amateur telescope makers.
+
 AOS is a Windows application. For its correct installation and operation, .net version 6 is required, which, if necessary, is installed automatically together with AOS.
 
 For a more detailed analysis of how AOS performs calculations, please visit my GitHub repository [link](https://github.com/maciejczarnacki/ronchi)
