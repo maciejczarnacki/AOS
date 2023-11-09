@@ -12,7 +12,7 @@ AOS is a Windows application. For its correct installation and operation, .net v
 
 [AOS v0.8.1 Download link](https://drive.google.com/file/d/1RsgUUwlxHL4G3dZE_JKWARTOY2_IveeM/view?usp=sharing)
 
-If you feel the need to support the development of this interesting tool, you can support the author with any donation via [PayPal]().
+If you feel the need to support the development of this interesting tool, you can support the author with any donation via [PayPal](https://paypal.me/mczarnackiAOS?country.x=PL&locale.x=pl_PL).
 The donation is not obligatory and AOS is free.
 
 ## How to use AOS
